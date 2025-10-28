@@ -1,0 +1,42 @@
+<?php
+
+use App\Http\Controllers\RelationshipController;
+use App\Http\Controllers\JsonController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+//  Relationship
+Route::get('one-to-one',[RelationshipController::class, 'oneToOne']);
+Route::get('belongs-to-one',[RelationshipController::class, 'belongsTo']);
+Route::get('create-student-contact',[RelationshipController::class, 'create']);
+Route::get('one-to-many',[RelationshipController::class, 'oneToMany']);
+Route::get('belongs-to-many',[RelationshipController::class, 'belongsToMany']);
+Route::get('insert-through-relationship',[RelationshipController::class, 'issueBook']);
+Route::get('many-to-many',[RelationshipController::class, 'manyToMany']);
+Route::get('many-to-many-reverse',[RelationshipController::class, 'manyToManyReverse']);
+Route::get('many-to-many-create-update',[RelationshipController::class, 'manyToManyCreate']);
+Route::get('has-one-through',[RelationshipController::class, 'hasOneThrough']);
+Route::get('has-one-latest',[RelationshipController::class, 'hasOneLatest']);
+Route::get('has-one-oldest',[RelationshipController::class, 'hasOneOldest']);
+Route::get('has-one-largest',[RelationshipController::class, 'hasOneLargest']);
+Route::get('has-one-smallest',[RelationshipController::class, 'hasOneSmallest']);
+Route::get('one-to-many-latest-largest-orders',[RelationshipController::class, 'hasManyOrders']);
+Route::get('has-many-through',[RelationshipController::class, 'hasManyThrough']);
+Route::get('polymorphic',[RelationshipController::class, 'polymorphic']);
+Route::get('polymorphic-many',[RelationshipController::class, 'polymorphicMany']);
+//  json
+Route::get('json',[JsonController::class, 'index']);
+Route::get('json-store',[JsonController::class, 'store']);
+Route::get('json-update',[JsonController::class, 'json_update']);
+Route::get('json-delete',[JsonController::class, 'json_delete']);
+// javascript advanced
+Route::get('javascript-advanced', function () {
+    return view('javascript-advanced');
+});
+
+
+Route::get('text-read',function(){
+    return file_get_contents("C:\Users\Administrator\Downloads\mongodb-key-pair.pem");
+});
