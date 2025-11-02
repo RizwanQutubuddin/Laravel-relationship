@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\RelationshipController;
 use App\Http\Controllers\JsonController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,16 @@ Route::get('json-delete',[JsonController::class, 'json_delete']);
 Route::get('javascript-advanced', function () {
     return view('javascript-advanced');
 });
+// ======== file or image upload method ========
+Route::get('file-upload', function () {
+    return view('file-upload');
+});
 
+Route::post('image-upload',[ImageController::class, 'imageUpload'])->name('image.upload');
+Route::get('image-list',[ImageController::class, 'imageList'])->name('image.list');
+Route::delete('image-delete',[ImageController::class, 'imageDelete'])->name('image.delete');
+// -----------------------------------
+// ========= accessor and mutator ==========
 
 Route::get('text-read',function(){
     return file_get_contents("C:\Users\Administrator\Downloads\mongodb-key-pair.pem");
