@@ -46,7 +46,23 @@ Route::get('image-list',[ImageController::class, 'imageList'])->name('image.list
 Route::delete('image-delete',[ImageController::class, 'imageDelete'])->name('image.delete');
 // -----------------------------------
 // ========= accessor and mutator ==========
+// i have added accessor and mutator in Student model
+Route::get('accessor-mutator', function () {
+    $student = \App\Models\Student::find(1);
 
+    // accessor in action
+    return $student->name;
+
+});
+// ================= Component =======================
+Route::get('components', function () {
+    return view('components');   
+});
+// ================= Slots =======================
+Route::get('slots', function () {
+    return view('slots');   
+});
+// ================ read text file ====================
 Route::get('text-read',function(){
     return file_get_contents("C:\Users\Administrator\Downloads\mongodb-key-pair.pem");
 });
