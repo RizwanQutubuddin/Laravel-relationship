@@ -1,13 +1,10 @@
 <?php
 
-use App\Http\Middleware\ValidUser;
-use App\Http\Middleware\TestUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\RelationshipController;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -76,42 +73,16 @@ Route::get('annonimous-component', function () {
     return view('annonimous-component');   
 });
 
-// ===== User Authentication (Auth::check())  and middleware =======================
-// Route::get('user-authentication', function () {
-//     return view('user-authentication');   
-// })->middleware(['validuser:Admin', 'testuser']); //testuser alias from middleware registered in bootstrap/app.php
-    
-// //-----group middleware -----
-// Route::get('user-authentication', function () {
-//     return view('user-authentication');   
-// })->middleware(['validuser:Admin', 'testuser']);
+// ================= User Authentication =======================
+Route::get('user-authentication', function () {
+    return view('user-authentication');   
+});
+Route::view('user-register','user-register')->name('user.register');
 
-
-Route::view('login','user-login')->name('user.loginform');
-Route::view('user-login','user-login')->name('user.loginform');
-Route::view('user-register','user-register')->name('user.registeration');
-Route::post('user-register',[UserController::class, 'register'])
-->name('user.register');
+Route::post('user-register',[UserController::class, 'register'])->name('user.register');
 Route::post('user-login',[UserController::class, 'login'])->name('user.login');
+Route::post('user-logout',[UserController::class, 'logout'])->name('user.logout');
 
-
-
-    //-----group middleware -----
-    Route::middleware(['validuser:Admin'])->group(function(){
-        Route::get('user-authentication', function () {
-            return view('user-authentication');   
-        });
-        Route::get('user-logout',[UserController::class, 'logout'])->name('user.logout')->withoutMiddleware(['validuser']);
-        
-    });
-
-
-    //-----group middleware register in bootstrap/app.php -----
-    // Route::middleware(['ok-user'])->group(function(){
-    //     Route::get('user-authentication', function () {
-    //         return view('user-authentication');   
-    //     });
-    // });
 // ================ read text file ====================
 Route::get('text-read',function(){
     return file_get_contents("C:\Users\Administrator\Downloads\mongodb-key-pair.pem");

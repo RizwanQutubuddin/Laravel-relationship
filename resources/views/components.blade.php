@@ -11,8 +11,8 @@
 
 <div class="container mt-3">
     <h2>Alerts</h2>
-    <x-alert type="danger" message="this is danger message" id="alert1" class="danger"/>
-    <x-alert type="info" message="this is info message"/>
+    <x-alert type="danger" dismissible message="this is danger message" id="alert1" class="mydanger" role="flash"/>
+    <x-alert type="info" message="this is info message" dismissible="true"/>
     <x-alert type="success" message="this is success message"/>
     <x-alert type="warning" message="this is warning message"/>
     <x-alert type="primary" message="this is primary message"/>

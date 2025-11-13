@@ -4,33 +4,30 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 
-class Alert extends Component
+class Slt extends Component
 {
-    /**
-     * Create a new component instance.
-     */
     public $type;
-    public $message;
     public $dismissible;
 
     protected $types=['success','danger','warning','info','primary','secondary','light','dark'];
-    public function __construct($type='', $message='empty alert message',$dismissible=false)
+    public function __construct($type='', $dismissible=false)
     {
         $this->type = $type;
-        $this->message = $message;
         $this->dismissible = $dismissible;
     }
 
     public function validateType(){
         return in_array($this->type, $this->types)?$this->type : 'info';
     }
-    /**
-     * Get the view / contents that represent the component.
-     */
+
+    public function link($text, $target="#"){
+        return new HtmlString('<a href="'.$target.'" class="alert-link">'.$text.'</a>');
+    }
     public function render(): View|Closure|string
     {
-        return view('components.alert');
+        return view('components.slt');
     }
 }
